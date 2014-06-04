@@ -3,6 +3,7 @@ import sys
 import re
 from setuptools import Command
 
+
 class EpydocCommand(Command):
     '''
     Setuptools command used to build an API documentation with epydoc.
@@ -62,14 +63,14 @@ class EpydocCommand(Command):
         if self.config is not None:
             cmdline.append('--config')
             cmdline.append(self.config)
-            
+
         base = self.get_finalized_command('build_py')
         if self.names is None or len(self.names) == 0:
             for package, _, _ in base.find_all_modules():
                 cmdline.append(package)
         else:
             cmdline = cmdline + self.names
-        
+
         import copy
         import epydoc.cli as ep
 
