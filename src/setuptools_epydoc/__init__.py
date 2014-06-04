@@ -54,7 +54,7 @@ class EpydocCommand(Command):
             pass
 
         # build the argument string
-        cmdline = ['foo']
+        cmdline = []
         cmdline.append('--' + self.format)
         cmdline.append('-o')
         cmdline.append(outdir)
@@ -65,9 +65,12 @@ class EpydocCommand(Command):
             cmdline.append(self.config)
 
         base = self.get_finalized_command('build_py')
+        names = []
         if self.names is None or len(self.names) == 0:
             for package, _, _ in base.find_all_modules():
-                cmdline.append(package)
+                pdir = base.get_package_dir(package)
+                names.append(pdir)
+            cmdline = cmdline + list(set(names))
         else:
             cmdline = cmdline + self.names
 
