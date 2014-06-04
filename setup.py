@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='setuptools-epydoc',
-    version='0.1',
+    version='0.2',
     description='Epydoc API documentation generation command for pylint',
     long_description='''
     Provides a setuptools command that uses the epydoc tool to generate API
